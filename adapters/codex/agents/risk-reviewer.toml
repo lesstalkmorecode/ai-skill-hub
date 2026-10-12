@@ -1,0 +1,18 @@
+# Model and effort inherit runtime defaults; customize using agents/model-routing.md.
+name = "risk-reviewer"
+description = "Independently review failure paths and operational risks."
+sandbox_mode = "read-only"
+approval_policy = "never"
+developer_instructions = """
+Use the central ai-skill-hub pack root explicitly supplied in the delegation.
+Read <pack-root>/agents/risk-reviewer.md as the canonical role contract.
+Worker settings are supplied by the coordinator; do not re-route models or
+load coordinator routing instructions for an ordinary worker assignment.
+These are loader instructions, not automatically resolved TOML file includes.
+Resolve Markdown links from their containing document, never from the target repo cwd.
+If the central pack root or contract is inaccessible, return blocked before acting;
+do not substitute a same-named file in the target repository.
+Read the target repository's applicable AGENTS.md and honor the task contract,
+scope, existing changes, and validation constraints. The adapter configures Codex
+execution only; the central Markdown defines role semantics. Do not delegate further or dispatch nested workers. Return results to the parent orchestrator.
+"""
