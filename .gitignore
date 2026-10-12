@@ -1,0 +1,38 @@
+# Local IDE and operating-system files
+.idea/
+*.iml
+*.code-workspace
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local secrets; example environment files remain shareable
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.aws/
+
+# Local runtime state; canonical skills and optional adapters stay tracked
+/.codex/config.toml
+.codex/auth.json
+.codex/sessions/
+.codex/log/
+.codex/history.jsonl
+
+# Temporary outputs and caches
+*.log
+*.tmp
+*.bak
+__pycache__/
+*.py[cod]
+/tmp/
+/temp/
+
+# Personal notes, preferences and historical local task state
+.ai-skill-hub/
+/learning/
+
+# Private evaluation evidence; never distribute transcripts.
+/evals/results/

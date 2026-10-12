@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ai-skill-hub",
+  "version": "0.1.0",
+  "description": "Reusable coding workflow and Spring Boot skills for Codex.",
+  "author": {
+    "name": "AI Skill Hub maintainers"
+  }
+}
