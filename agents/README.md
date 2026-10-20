@@ -1,16 +1,15 @@
-# Worker roles
+# Optional worker roles
 
-Load only the assigned contract. [task-orchestrator](../skills/task-orchestrator/SKILL.md) coordinates work when requested; these roles are optional helpers, not a mandatory pipeline.
+The main agent normally performs planning, architectural reasoning, implementation and test design.
+Only two reusable leaf contracts are supplied:
 
-| Contract | Responsibility |
+| Contract | Assignment |
 | --- | --- |
-| [implementer](implementer.md) | Make scoped changes and check them |
-| [reviewer](reviewer.md) | Independently review correctness |
-| [risk-reviewer](risk-reviewer.md) | Examine relevant failure paths and regressions |
-| [planner](planner.md) | Clarify requirements and dependencies |
-| [architect](architect.md) | Answer consequential design questions |
-| [test-planner](test-planner.md) | Propose useful acceptance checks |
+| [implementer](implementer.md) | Bounded implementation with explicit ownership and actual verification. |
+| [reviewer](reviewer.md) | Independent read-only assessment of a concrete engineering question or diff. |
 
-The coordinator follows [Execution](../skills/task-orchestrator/references/execution.md) for assignment inputs, ownership, permissions and integration, and [worker settings](model-routing.md) only for explicit overrides or compatibility problems. Runtime defaults are otherwise inherited. These are coordinator references, not extra documents every worker must load.
-
-Workers inspect relevant source and return results, actual checks and unresolved issues. Only implementer writes within assigned scope; other roles stay read-only. Workers never delegate or approve the overall task. The coordinator handles questions and the [final verification gate](../skills/task-orchestrator/SKILL.md#final-verification-gate); no task-state schema is required.
+Use [risk and evidence](../skills/task-orchestrator/references/risk.md#decide-whether-to-delegate)
+to decide whether authorized delegation adds value, then
+[assignment and integration](../skills/task-orchestrator/references/execution.md) for the actual
+assignment. Roles are optional capabilities, not pipeline stages. Native runtime defaults apply.
+Workers return evidence and limits; the main agent owns integration and the final claim.

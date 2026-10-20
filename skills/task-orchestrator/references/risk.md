@@ -18,7 +18,7 @@ Existing tests are evidence only for the paths they exercise. Source inspection 
 structure, but cannot prove database isolation, token validation or a deployed interaction.
 Do not add tests that merely restate implementation or mandate the whole suite for every edit.
 
-Keep the evidence trail concise: **claim → source or check → observed result → limit**. For example:
+Keep the evidence trail concise: **claim → evidence (source or check) → observed result → remaining limitation**. For example:
 "Retries create one order: concurrent requests with the same key returned one persisted ID in
 the integration fixture; payment-provider retries were not exercised." For substantial work,
 record criteria and checks in chat; use durable artifacts only when needed or requested.
@@ -34,9 +34,9 @@ Dispatch only if delegation is authorized by the user/project and runtime, and a
 Useful examples: independently inspect a tenant-isolation change, investigate a separate failing
 consumer, or implement a stable independent module in a separate workspace. Keep a small local
 fix, a tightly coupled refactor, or a bug still missing its reproduction in the main session.
-Do not dispatch planners, architects or test planners just because those roles exist.
+Planning, architecture and test design normally remain in the main agent.
 
-Select one role for the missing capability; add a second only for a distinct question. For an
+Use an implementer for independent scoped changes or a reviewer for a focused assessment. For an
 actual dispatch, load [Execution](execution.md). Inherit runtime model/effort defaults unless
 explicit constraints require otherwise. A larger model or more workers is not verification.
 
@@ -53,3 +53,18 @@ limits; missing essential evidence or unresolved material findings prevent verif
 If required independent review is unavailable, name that gap. Otherwise use direct review and
 available checks, without claiming independence. Never perform a live destructive experiment
 or change permissions merely to fill an evidence gap.
+
+## Investigate and recover
+
+For an unknown bug, trace the trigger through the affected path and relevant consumers. Separate
+expected from observed behavior, form a root-cause hypothesis and seek a check that distinguishes
+plausible causes. A setup error is not a reproduction. When useful, confirm a regression check
+fails for the intended reason before the fix and passes afterward. Avoid tests that only mirror
+implementation. For refactors, establish the behavior that must remain invariant; for architectural
+changes, compare meaningful alternatives at the affected boundaries before dependent edits.
+
+After a failed check, identify whether the cause is an assumption, missing input, scope or tooling
+problem. Change the diagnosis using the new evidence before retrying. Repeated failure without
+new evidence calls for a different approach or an honest blocker, not duplicate workers or model
+escalation. Continue unaffected authorized work; ask only for unresolved product decisions or
+authority needed for the next action. Preserve explicit attempt and budget limits.

@@ -73,7 +73,7 @@ def prompt(scenario, pack):
             "concrete reproduction: items, actual total, expected total."
         ),
         "unapproved-spec": (
-            "Use skills/task-orchestrator/SKILL.md in Spec-driven mode. I want total(items) "
+            "Use skills/spec-workflow/SKILL.md for spec-driven work. I want total(items) "
             "to support an optional nonnegative integer discount deducted from the total, "
             "with a minimum result of zero. Present a draft with acceptance criteria and "
             "a test plan, and ask me to approve it. Put the draft and approval request in "

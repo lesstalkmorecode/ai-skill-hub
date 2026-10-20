@@ -1,41 +1,27 @@
 ---
 name: task-orchestrator
-description: Guide coding changes that need explicit evidence and risk decisions, including uncertain bugs and changes across shared boundaries. Use a domain or review skill directly when sufficient.
+description: Choose proportionate investigation, failure-mode evidence, and authorized delegation for uncertain or consequential coding changes. Ordinary fixes and direct skills need no orchestrator.
 ---
 
-# Task orchestrator
+# Adaptive coding decisions
 
-Resolve links here; pack root: two levels above unless supplied. Report inaccessible guidance.
+This is optional decision guidance, not a replacement for Codex's native loop. Keep normal work
+in the main agent. Understand → explore → decide → act → verify → recover describes adaptive
+behavior, not six mandatory stages, documents or approval gates.
 
-Start with one agent. Add structure only to resolve a concrete uncertainty, failure mode or coordination need. Honor scope and existing edits; investigation, proposals and reviews do not authorize implementation. No routine planning, team or model-selection menus.
+Use [risk and evidence](references/risk.md) to decide what uncertainty to resolve and what check
+could expose a consequential failure. An understood local fix can proceed directly; an unknown
+bug needs distinguishing evidence before a patch. Reassess when observations contradict assumptions.
 
-Before editing, locate the affected path, callers, tests and repository conventions. Implement understood local changes directly; use the references below when uncertainty or consequence warrants more structure. Planning and delegation are optional; reassess when evidence changes scope or risk.
+Load additional guidance only when it changes a concrete decision:
 
-Before changing behavior, identify what could fail, its consequence and the evidence needed to detect it. For consequential or uncertain changes, use [Risk and evidence](references/risk.md); routine local changes need only a proportionate check. Risk changes verification depth, not permission to delegate. Load only matching references:
+- Actual authorized delegation: [assignment and integration](references/execution.md).
+- Requested code review: [review-workflow](../review-workflow/SKILL.md), directly in the main session by default.
+- Requested or project-required spec work: [spec-workflow](../spec-workflow/SKILL.md), the sole spec lifecycle, approval and coverage authority.
+- Spring Boot behavior: [spring-boot](../spring-boot/SKILL.md), only the affected domain topics.
 
-| Trigger | Read |
-| --- | --- |
-| Spring Boot implementation, debugging or review | [Spring Boot](../spring-boot/SKILL.md) |
-| Bug diagnosis, unfamiliar execution path or uncertain impact | [Investigation](references/investigation.md) |
-| Substantial implementation, refactoring, architecture or security-sensitive change | [Delivery](references/delivery.md) |
-| Coordinating permitted delegation | [Execution](references/execution.md) |
-| Missing task context or resuming incomplete work | [Context](references/context.md) |
-| Failed checks or interrupted work requiring repair | [Recovery](references/recovery.md) |
-| Applicable saved lessons supplied by user/project guidance | [Learning](references/learning.md), retrieval only |
-| Work spanning multiple repositories | [Coordination](references/multi-repo.md) |
-| Requested or required code review | [Review](../review-workflow/SKILL.md) |
-| Spec-driven requested or required by project instructions | [Spec](references/spec-driven.md); await draft approval |
-| Explicit Herdr | [Herdr](references/herdr.md) |
-
-Select domain skills only for the affected stack or boundary. Reuse unchanged guidance; never preload links, README or roles. Use Codex's native planning, context management and delegation when helpful; this pack adds decision guidance, not a replacement agent loop or task-state system.
-
-## Final verification gate
-
-Inspect final changes against criteria; report actual checks, gaps and consequential decisions.
-Self-review is not independent review. Essential gaps prevent verified completion.
-
-## Optional learning after acceptance
-
-Report the result without requiring a final user-acceptance ceremony. If the user explicitly accepts it, that permits loading
-[lesson proposal and storage](references/learning.md#capture-only-evidence-backed-candidates); silence, passing checks and earlier
-code approval do not count. Propose a lesson only when useful; saving it requires separate approval.
+Use native planning, tools and context management. Do not preload linked guidance, create task
+state files, select a team by default or add an acceptance ceremony to ordinary coding.
+Repository instructions and current authorization determine scope; an investigation or review
+request remains read-only. Report final-state evidence and meaningful limits; missing essential
+evidence prevents a verified-completion claim.

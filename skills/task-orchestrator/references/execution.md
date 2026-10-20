@@ -1,15 +1,31 @@
-# Working with other agents
+# Delegation and integration
 
-Load this only for an actual delegation. First apply [the delegation decision](risk.md#decide-whether-to-delegate); high risk alone is not dispatch authorization. Roles are optional, not pipeline stages. Honor user/project authorization and runtime restrictions, including explicit single-agent/team choices. Explicit Herdr loads [Herdr](herdr.md).
+Load only for an actual assignment after the [delegation decision](risk.md#decide-whether-to-delegate).
+Use the native runtime; [Codex execution](../../../adapters/codex/execution.md) describes runtime limits.
+Only two optional contracts exist: [implementer](../../../agents/implementer.md) and
+[reviewer](../../../agents/reviewer.md). The main agent handles planning, design and test selection.
+A reviewer can assess any named engineering concern; do not create a specialist role pipeline.
 
-Delegate when the focused expertise, independent assessment or parallel progress outweighs dispatch and integration work. Keep tightly coupled edits or questions already resolved in the main session local. Parallel assignments need stable shared interfaces and sufficiently independent outcomes; sequence work that depends on unresolved decisions.
+Give a worker the absolute pack and target paths, current revision/working state, one bounded
+outcome or question, complete assigned criteria, owned paths/exclusions, binding decisions,
+prerequisites and allowed checks. Pass the approved baseline and approval reference for spec work.
+Load only the assigned contract and relevant domain guidance. Prefer minimal necessary context
+where supported; do not claim isolated history when the runtime inherits it.
 
-Inherit runtime model/effort defaults; consult [worker settings](../../../agents/model-routing.md) only for explicit overrides or compatibility problems. Give each worker pack/role paths, repo/worktree and current state, one bounded outcome, full assigned criteria, owned paths and exclusions, binding decisions, prerequisite results and allowed checks. Request concrete findings or changes with source references, actual verification and unresolved issues. Load only its role and relevant domain guidance. Prefer fresh/minimal history: pass necessary facts and evidence references, not the full conversation. Disclose unsupported settings or history isolation. Workers inspect source and return results; they never delegate further.
+Inherit native model/effort defaults unless the user explicitly requests supported settings.
+Honor those preferences; resolve unsupported explicit requirements before dispatch. Do not invent
+model IDs, prices or effective settings, edit global configuration, or automatically upgrade after
+failure. Model choice and worker count are not verification.
 
-One writer per checkout. Parallel writers need separate workspaces and non-conflicting ports, databases and generated artifacts. Start dependent work only after prerequisites are available. Track identities/ownership in chat; inspect liveness before relaunching after timeout or interruption.
+Parallel writers need separate workspaces and independent shared resources; keep one writer per
+checkout. Sequence dependencies until interfaces are stable. Track ownership in chat. A timeout
+is not proof a writer stopped: inspect liveness and changes before retrying or transferring ownership.
+Workers do not delegate further, expand scope or publish; they return changes/findings, actual
+checks and limits to the main agent.
 
-Verify actual runtime controls when a task requires a sandbox or disabled tools; report unavailable protection before dispatch. Load the applicable runtime adapter for dispatch capabilities and permission behavior: [Codex execution](../../../adapters/codex/execution.md) for Codex.
-
-The coordinator inspects returned changes or evidence, resolves conflicting findings against source, and integrates in dependency order. A worker's completion claim does not establish overall correctness. Final integration review receives every criterion and relevant decision across repos. Required unavailable independence is a gap. Read-only workers return findings and existing references without writing reports. Writers save logs only within authorized paths. Reuse valid context and evidence; recheck affected results after integration or fixes.
-
-For failed or interrupted assignments, inspect current changes and worker liveness before retrying. Supply a narrower question or missing evidence through [recovery](recovery.md); resume locally when delegation no longer adds value. Stop or confirm the previous writer has exited before transferring ownership. Do not launch repeated replacements without new evidence or bypass an explicit team or runtime constraint.
+Inspect returned evidence and diffs against source, resolve conflicts and verify the integrated
+state in dependency order. For multiple repositories, verify producer/consumer compatibility and
+the combined behavior at the intended revisions; separately passing tests may miss that boundary.
+Partial reviews do not cover the whole task. Recheck evidence affected by integration or repairs.
+If required independent review is unavailable, report that gap rather than calling self-review
+independent. Continue locally when optional delegation adds no value or is unavailable.

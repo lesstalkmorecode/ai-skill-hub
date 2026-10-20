@@ -9,6 +9,8 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+EXPECTED_ROLES = {"implementer", "reviewer"}
+EXPECTED_SKILLS = {"task-orchestrator", "spec-workflow", "review-workflow", "spring-boot"}
 CONTENT_DIRS = ("skills", "agents", "adapters", "docs", "evals", ".github")
 PRIVATE_PARTS = {
     "learning", ".git", ".idea", ".aws", ".ai-skill-hub", "__pycache__",
@@ -42,7 +44,8 @@ def maintained_files(root):
     for directory in CONTENT_DIRS + (".codex/agents",):
         files.extend(
             p for p in (root / directory).rglob("*")
-            if p.is_file() and not private_path(p.relative_to(root))
+            if p.is_file() and p.resolve().is_relative_to(root.resolve())
+            and not private_path(p.relative_to(root))
         )
     return files
 
@@ -119,6 +122,18 @@ def link_errors(root, path):
 def validate(root):
     errors = []
     files = maintained_files(root)
+    # Inspect links before is_file() filtering so broken links cannot disappear from validation.
+    for directory in CONTENT_DIRS + (".codex/agents",):
+        for path in (root / directory).rglob("*"):
+            if path.is_symlink() and not private_path(path.relative_to(root)):
+                if not path.exists() or not path.resolve().is_relative_to(root.resolve()):
+                    errors.append(f"{path.relative_to(root)}: broken or escaping symlink")
+    skills = {p.parent.name for p in (root / "skills").glob("*/SKILL.md")}
+    roles = {p.stem for p in (root / "agents").glob("*.md") if p.name != "README.md"}
+    if skills != EXPECTED_SKILLS:
+        errors.append(f"skill inventory differs: {sorted(skills)}")
+    if roles != EXPECTED_ROLES:
+        errors.append(f"role inventory differs: {sorted(roles)}")
     for path in files:
         try:
             if path.suffix == ".json":
@@ -142,12 +157,19 @@ def validate(root):
         pass  # Already reported above.
     canonical = {p.name: p for p in (root / "adapters/codex/agents").glob("*.toml")}
     copies = {p.name: p for p in (root / ".codex/agents").glob("*.toml")}
-    if not canonical or canonical.keys() != copies.keys():
-        errors.append("canonical and local agent inventories differ or are empty")
+    if set(canonical) != {f"{role}.toml" for role in EXPECTED_ROLES} or canonical.keys() != copies.keys():
+        errors.append("canonical and local agent inventories differ from the two-role catalog")
     for name, path in canonical.items():
-        if name in copies and path.read_bytes() != copies[name].read_bytes():
-            errors.append(f"{name}: canonical and local agent definitions differ")
+        if name in copies and copies[name].is_symlink():
+            errors.append(f"{name}: local agent definition must be a portable regular-file copy")
         try:
+            if not path.resolve().is_relative_to(root.resolve()):
+                continue  # Reported by the symlink audit; never read outside the pack.
+            if name in copies:
+                if not copies[name].resolve().is_relative_to(root.resolve()):
+                    continue
+                if path.read_bytes() != copies[name].read_bytes():
+                    errors.append(f"{name}: canonical and local agent definitions differ")
             agent = tomllib.loads(path.read_text(encoding="utf-8"))
             for key in ("name", "description", "developer_instructions"):
                 if not isinstance(agent.get(key), str) or not agent[key].strip():
@@ -157,11 +179,13 @@ def validate(root):
                 errors.append(f"{name}: missing or mismatched role")
             if f"<pack-root>/agents/{path.stem}.md" not in agent.get("developer_instructions", ""):
                 errors.append(f"{name}: canonical role loader reference missing")
-            unsupported = set(agent) - {"name", "description", "developer_instructions", "model", "model_reasoning_effort"}
+            unsupported = set(agent) - {"name", "description", "developer_instructions"}
             if unsupported:
-                errors.append(f"{name}: outside this adapter's instructions/model-only profile: {sorted(unsupported)}")
+                errors.append(f"{name}: outside this adapter's instructions-only native-default profile: {sorted(unsupported)}")
+        except OSError as exc:
+            errors.append(f"{name}: unreadable agent definition: {exc}")
         except ValueError:
-            pass
+            pass  # Syntax errors were reported while parsing maintained files.
     return errors
 
 

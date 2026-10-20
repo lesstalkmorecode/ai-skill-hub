@@ -19,6 +19,5 @@ Role loaders do not enforce tool or filesystem restrictions. Follow
 session when enforced read-only review is required. Context separation, independent review and
 OS-enforced isolation require separate evidence.
 
-The supplied adapters inherit runtime model/effort defaults. Consult
-[worker settings](../../agents/model-routing.md) only for explicit overrides or compatibility problems;
-there is no mandatory model-routing stage.
+The supplied adapters inherit native runtime model/effort defaults. Explicit supported user settings
+are handled in the linked delegation guidance; no separate routing layer is required.

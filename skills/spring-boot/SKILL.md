@@ -27,14 +27,6 @@ Prefer constructor injection for new collaborators. Use records for new Java DTO
 
 References contain decision checks, not mandatory features. Their official links may default to newer releases: select documentation matching the target's resolved versions before choosing APIs or imports. Report unavailable version evidence instead of silently changing the baseline.
 
-## Learn from the project
-
-Use the project's existing decisions and reuse applicable guidance already in context. When
-user/project guidance supplies saved lessons, use [retrieval](../task-orchestrator/references/learning.md)
-only for missing relevant guidance. Consider [lesson proposals and storage](../task-orchestrator/references/learning.md#capture-only-evidence-backed-candidates)
-only after explicit final acceptance; saving still requires separate approval. Do not impose a
-fixed convention set or silently edit this shared skill.
-
 ## Verify the changed behavior
 
 Choose checks that expose the actual failure or acceptance condition using the project's configured tasks. A mocked collaborator cannot prove database, proxy or token-validation behavior. Report actual checks, skipped checks and remaining gaps; for reviews, return concrete findings and file/line evidence without fixing them. Loading this skill does not authorize test execution outside the assignment's limits.

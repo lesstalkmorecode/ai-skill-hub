@@ -1,126 +1,66 @@
 # Workflow guide
 
-Use this guide to understand how the skills handle scope, delegation, specification approval,
-and saved lessons. For installation and a first task, see the [README](../README.md).
+The [README](../README.md) describes installation and entrypoints. The main Codex agent normally
+handles the whole coding task using native planning, tools and context management. The conceptual
+loop is understand → explore → decide → act → verify → recover; it is not six mandatory stages.
+No pipeline, task-state schema, plan file or team is required.
 
-## Task scope
+## Choose proportionate guidance
 
-The main Codex agent reads the target repository's instructions and relevant code before acting.
-It follows your requested outcome, preserves existing edits, and uses the project's build and test
-tools. For substantial implementation, it states the scope, acceptance criteria, and checks in
-the conversation. Small tasks can proceed directly.
-
-| Request | Expected behavior |
+| Situation | Useful decision |
 | --- | --- |
-| Investigate or explain | Gather evidence and report the diagnosis without editing code. |
-| Review | Return prioritized findings with file references and consequences, without applying fixes. |
-| Fix or implement | Change the requested behavior within scope and run relevant, permitted checks. |
-| Spec-driven implementation | Present a draft and wait for approval before implementation. |
+| Known local fix | Inspect the path, edit and run a focused check. |
+| Unknown bug | Reproduce or gather distinguishing evidence before patching. |
+| Architectural change | Compare meaningful alternatives and shared boundaries before dependent changes. |
+| Consequential change | Verify concrete denied paths, retries, isolation, compatibility or recovery as relevant. |
+| Failed check | Revise the diagnosis with new evidence before retrying. |
+| Unresolved product decision | Ask the user; continue independent authorized work. |
 
-The final response describes the result, actual verification, and remaining gaps. Passing checks
-are evidence for the checked behavior; they do not establish user acceptance of the result.
+[Risk and evidence](../skills/task-orchestrator/references/risk.md) owns the consequence, reach,
+reversibility and uncertainty criteria, evidence model, recovery decisions and completion limits.
+[task-orchestrator](../skills/task-orchestrator/SKILL.md) remains only as an optional entrypoint for
+these decisions; it does not route every task. Load domain references only for affected behavior.
+For example, Spring persistence guidance helps with database invariants but is irrelevant to a
+small Python fix. File counts are weak risk proxies. High risk increases verification depth,
+not automatic team size.
 
-## Choose the development approach
+## Scope and completion
 
-Use a skill directly when it is sufficient; ordinary Codex tasks need no hub entrypoint.
-The [orchestrator](../skills/task-orchestrator/SKILL.md) routes understood local changes directly
-and loads [Investigation](../skills/task-orchestrator/references/investigation.md) for bugs or
-uncertainty. [Delivery](../skills/task-orchestrator/references/delivery.md) owns detailed approach
-selection for substantial work, refactoring, architecture and security-sensitive changes.
-[Risk and evidence](../skills/task-orchestrator/references/risk.md) owns verification depth and
-delegation decisions: local reversible changes get focused checks; changed shared boundaries
-need consumer/contract evidence; sensitive or irreversible effects need checks for their concrete
-failure modes. Uncertainty increases investigation and verification before it increases team size.
-Planning and delegation remain optional; model/effort settings inherit runtime defaults.
+Investigation and review requests return evidence without implementation. Fix/implementation
+requests authorize scoped changes under applicable project rules. Preserve existing user edits
+and explicit constraints. Ordinary coding introduces no new spec or final-acceptance gate.
 
-These portable instructions use Codex as the current execution target; tool behavior stays in the
-[Codex execution reference](../adapters/codex/execution.md). No additional runtime is required.
-The approach draws on Simon Willison's
-[Agentic Engineering Patterns](https://simonwillison.net/guides/agentic-engineering-patterns/),
-including [baseline testing](https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/)
-and [red/green checks](https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/),
-and Anthropic's [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
-and [context engineering guidance](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents).
-These inform the design; they do not establish measured improvements for this package.
+Before completion, inspect the integrated diff and relevant untracked files. Match material claims
+to current evidence and disclose limits. Passing unit mocks do not establish database isolation
+or deployed behavior. Essential verification gaps and unresolved material findings prevent a
+verified-completion claim. Recheck results affected by subsequent edits.
 
+## Optional delegation
 
-## Spec-driven approval
+The [delegation criteria](../skills/task-orchestrator/references/risk.md#decide-whether-to-delegate)
+require authorization and concrete value. A bounded independent implementation or focused review
+can qualify; a coupled refactor or tiny fix normally stays local. Use only
+[implementer or reviewer](../agents/README.md) and native runtime defaults, honoring explicit
+supported user settings. Planning, design, test selection and risk analysis remain normal main-agent
+capabilities. [Assignment and integration](../skills/task-orchestrator/references/execution.md)
+loads only for actual dispatch. Workers are leaf assignments, not a required chain.
 
-Spec-driven mode applies when you request it or the target project's instructions require it.
-Codex drafts the intended behavior, acceptance criteria, non-goals, open questions, and test plan.
-It follows an existing specification process, or presents the draft in the conversation when no
-file-based process is required.
+Independent review is distinct from self-review. If required independence is unavailable, say so.
+Role instructions do not enforce read-only access; see [controls](controls.md#permission-limits).
 
-You must explicitly approve the presented draft before implementation or implementation workers
-start. Requested revisions produce a new draft for approval. A material change to approved scope
-or behavior also requires renewed approval.
+## Optional spec work
 
-Final verification covers every approved acceptance criterion. The `Spec Coverage` report links
-each criterion to implementation and check evidence, identifies unverified or partially satisfied
-criteria, and reports remaining work. Syncing or archiving specifications requires the applicable
-project workflow and task authorization. See the [full Spec-driven rules](../skills/task-orchestrator/references/spec-driven.md).
+[spec-workflow](../skills/spec-workflow/SKILL.md) is the only spec lifecycle, approval, storage and
+coverage authority. It follows the target project's conventions, defaults to chat drafts without
+a configured file workflow, and keeps explore/propose/apply/sync/archive distinct. Use its approval
+and criterion-coverage rules when requested or required; ordinary tasks need no spec.
 
-## Delegation
+## Outside the coding loop
 
-You can request `Keep this in the main session` or `Use sub-agents`. User/project authorization
-and runtime permissions govern delegation. When permitted, delegate only a bounded outcome with
-available inputs, clear ownership and a benefit exceeding integration cost. A tenant-isolation
-review or an independent consumer investigation can qualify; a small local fix or tightly coupled
-refactor normally stays local. High risk alone never authorizes dispatch or requires a team.
+[Session transfer](session-transfer.md) is a short optional chat note, not another skill.
+[Learning](learning.md) is only for supplied applicable guidance or requested lesson storage.
+Neither adds startup scans, automatic persistent writes or a final acceptance ceremony.
 
-Each worker receives the absolute hub pack root, target repository or worktree, role contract,
-expected outcome, assigned criteria, ownership, relevant decisions, and allowed checks. Workers
-inspect relevant source and return results and verification limits to the main agent. They do not
-delegate further or declare the overall task accepted.
-
-Only implementation workers are instructed to edit their assigned files. Parallel writers need
-separate workspaces and independent shared resources. The main agent integrates changes and
-checks the final state; self-review is not independent review.
-
-See [worker contracts](../agents/README.md), [optional model overrides](../agents/model-routing.md), and
-[optional Codex registration](../adapters/codex/README.md#register-named-agents). Role instructions are
-behavioral rules; enforced access restrictions depend on [session permissions](controls.md#permission-limits).
-
-## Learning
-
-Learning stores approved guidance for future tasks. It adds no mandatory acceptance ceremony.
-When useful, it starts after you explicitly accept the
-final result: Codex may then propose a short lesson with its rule, evidence, scope, and destination.
-Saving needs a separate approval; silence authorizes no write.
-
-The default destination is `<hub-source-root>/learning/` in the source checkout. Provide that path
-in the conversation or an existing user-selected local preference:
-
-```text
-AI Skill Hub source: /absolute/path/to/ai-skill-hub
-```
-
-General Spring Boot lessons use `learning/spring-boot.md`; application lessons use
-`learning/projects/<project-id>.md`. The directory is created only when saving an approved lesson
-and remains outside Git and plugin packages. An installed or cached plugin directory is not the
-lesson destination. Without the source path, Codex continues without saved lessons and resolves
-it before proposing a save.
-
-Future relevant work reads supplied applicable general guidance and the matching application's lessons.
-Project IDs distinguish separate repositories while allowing worktrees to share lessons. Moving
-lessons or saving them in the target application requires explicit authorization. See the
-[retrieval reference](../skills/task-orchestrator/references/learning.md) for source resolution and
-identification. Retrieval guidance loads only for supplied applicable lessons; after explicit final
-acceptance, Codex may load [proposal and storage rules](../skills/task-orchestrator/references/learning.md#capture-only-evidence-backed-candidates).
-
-## Native context and session transfer
-
-Codex manages context and compaction. When a session transfer is actually needed, use only the
-minimal [session transfer note](../skills/task-orchestrator/references/context.md#session-transfer)
-in the existing context reference. No separate skill, workflow or persistent state is required.
-
-## Loading guidance
-
-Skills link to topic-specific references so Codex can read only what the task needs. For example,
-Spring Boot persistence work uses the data reference; authentication work uses security guidance.
-Workers receive the assigned contract and necessary task facts rather than every skill and role.
-Reuse unchanged guidance, while preserving all acceptance criteria and binding decisions.
-
-These loading rules aim to keep instructions relevant. File lengths and word counts do not
-establish token savings or better outcomes; evaluate changes through real tasks and observed
-verification, repairs, and user corrections.
+The architecture aims for fewer concepts and relevant guidance; only observed development tasks
+can establish behavioral quality, token savings or productivity changes. See the
+[evaluation cases](../evals/decision-cases.md) for expectations and unverified areas.

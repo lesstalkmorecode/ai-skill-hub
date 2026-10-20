@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ai-skill-hub",
-  "version": "0.1.0",
-  "description": "Risk-adaptive coding workflows and optional domain guidance for Codex.",
+  "version": "0.2.0",
+  "description": "Single-agent-first, evidence-driven coding guidance for Codex with optional specs, review, domain skills and two worker roles.",
   "author": {
     "name": "AI Skill Hub maintainers"
   }

@@ -75,9 +75,9 @@ inheritance and permission limits. Task assignments and integration are owned by
 
 ## Maintaining definitions
 
-Canonical adapters in `adapters/codex/agents/` have matching copies under `.codex/agents/` for work
+Canonical adapters in `adapters/codex/agents/` have matching regular-file copies under `.codex/agents/` for work
 in this checkout. Update both sets together and keep their contents identical. Copies installed in
 another project or your personal configuration require separate maintenance. Changes to central
 Markdown contracts affect future reads from the supplied pack root.
 
-Models and effort inherit runtime defaults; see [worker settings](../../agents/model-routing.md) only for explicit overrides or compatibility problems.
+The only supplied roles are `implementer` and `reviewer`. Models and effort inherit native runtime defaults; explicit supported user settings are handled in the [delegation guidance](../../skills/task-orchestrator/references/execution.md). No model-selection stage or global configuration changes are implied.

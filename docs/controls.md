@@ -7,7 +7,7 @@ local Codex configuration and applicable managed policies.
 
 When editing this package, validate `plugin.json`, skill frontmatter, and relative Markdown links.
 Keep canonical agent definitions in `adapters/codex/agents/` identical to the matching `.codex/agents/`
-copies. Review changes against the affected role contracts and approval boundaries.
+regular-file copies. Review changes against the affected role contracts and approval boundaries.
 
 Choose verification using [Risk and evidence](../skills/task-orchestrator/references/risk.md),
 which owns the shared matrix and completion limits. Use the target application's own tests to verify application changes. Report checks actually

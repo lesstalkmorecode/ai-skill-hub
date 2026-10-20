@@ -1,24 +1,35 @@
 ---
 name: review-workflow
-description: Review code or a diff without edits, directly or with explicitly permitted independent reviewers.
+description: Review code or a diff directly without edits and return prioritized, evidence-backed findings. An independent worker is optional when authorized and useful.
 ---
 
-# Review workflow
+# Read-only review
 
-Honor the supplied target, team and validation limits. With no target, assume the current staged/unstaged and relevant untracked changes and state that assumption. For a branch or PR establish the comparison base; for a file target inspect it even without a Git diff. If nothing is available to review, report that rather than inventing findings.
+Review directly in the main session by default. Honor the supplied target and validation limits.
+Without a target, state the assumption that staged, unstaged and relevant untracked changes are
+in scope. Establish the base for a branch/PR; inspect a supplied file even without a diff. If no
+review target is available, say so rather than inventing findings.
 
-Read the applicable repo guidance, complete assigned target and necessary nearby code. Inspect actual code independently of implementation summaries. Review-only means no edits, reverts, tooling installation, report-file creation or published comments.
+Read applicable repo guidance, the complete assigned target and necessary nearby code. Inspect
+actual code independently of implementation summaries. Assess correctness, architecture, security,
+concurrency, data integrity, performance or test coverage as relevant to the assignment. Use
+[risk and evidence](../task-orchestrator/references/risk.md) for consequential failure modes;
+load [Spring Boot](../spring-boot/SKILL.md) topics only for that stack. Do not turn every concern
+into a separate worker. Independent review requires both authority and concrete benefit under
+the linked delegation criteria; disclose unavailable required independence.
 
-These boundaries are instructions, not a sandbox. When enforced read-only access is required, verify the session's actual permissions before reviewing; disclose unavailable enforcement. Codex workers inherit parent permissions; follow the [permission limits](../../docs/controls.md#permission-limits) for a separate restricted review session.
+Review-only means no edits, reverts, tooling installation, report-file creation or published
+comments. Run only permitted checks that respect those boundaries. Instructions do not enforce
+access: see [permission limits](../../docs/controls.md#permission-limits) when enforced read-only
+is required. A role name alone provides no sandbox.
 
-For Spring Boot targets, apply [Spring Boot](../spring-boot/SKILL.md) and only relevant references within these read-only boundaries.
+For spec assignments use [spec-workflow coverage](../spec-workflow/SKILL.md#coverage-and-completion)
+with the exact approved baseline and every assigned criterion. Partial reviews do not replace a
+whole-task integration review. If the target changes, identify the mismatch and re-review affected
+new changes before carrying conclusions forward. A clean diff alone does not prove criteria.
 
-Review directly by default. Use [risk and evidence](../task-orchestrator/references/risk.md) when consequences or uncertainty need deeper checks or a decision about permitted independent review. A correctness reviewer covers behavior, criteria and maintainability; add a risk reviewer only for a distinct question. Inherit runtime settings; read [worker settings](../../agents/model-routing.md) only for explicit overrides or compatibility problems. Delegated reviewers apply their assignment and return findings; they never dispatch more agents. Disclose unavailable required independence.
-
-Task reviewers receive complete assigned criteria, binding decisions, target/base and relevant evidence. Final integration review receives all criteria and relevant decisions across the task and participating repos. Partial reviews do not replace that whole-task check. If the target changes during review, identify the mismatch and inspect the affected new state before carrying findings forward.
-
-For Spec-driven assignments, follow the [coverage gate](../task-orchestrator/references/spec-driven.md#mandatory-spec-coverage-and-completion-gate) for the approved baseline, criterion coverage and evidence gaps. A clean diff review alone does not establish spec coverage.
-
-Return actionable findings first: severity, file/line, realistic trigger, consequence and concrete correction. Deduplicate overlap and separate uncertain questions from confirmed bugs. Include the reviewed state, actual checks and meaningful limits. State when no actionable findings were found.
-
-Return findings to the coordinator for authorized fixes. Read-only workers return concise evidence and existing artifact references; the coordinator may persist reports at an authorized path if needed. Re-review affected corrections when assigned using [recovery](../task-orchestrator/references/recovery.md). Review completion does not approve or implement the target.
+Return actionable findings first: severity, file/line, realistic trigger, consequence and suggested
+correction, supported by source or a concrete check. Deduplicate overlap; distinguish confirmed
+bugs from open questions. Include the reviewed revision/working state, actual checks and limits.
+State when no actionable findings were found. Return to the requester or main agent for any
+separately authorized fixes; review completion does not implement or approve the target.

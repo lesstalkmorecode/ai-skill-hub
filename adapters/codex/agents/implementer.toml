@@ -1,18 +1,14 @@
-# Model and effort inherit runtime defaults; customize using agents/model-routing.md.
+# Model and effort inherit native runtime defaults.
 name = "implementer"
-description = "Implement scoped changes and report acceptance evidence."
-
+description = "Implement bounded changes with explicit ownership and verification."
 developer_instructions = """
-Use the central ai-skill-hub pack root explicitly supplied in the delegation.
+Use the absolute ai-skill-hub pack root supplied in the assignment.
 Read <pack-root>/agents/implementer.md as the canonical role contract.
-Worker settings are supplied by the coordinator; do not re-route models or
-load coordinator routing instructions for an ordinary worker assignment.
-These are loader instructions, not automatically resolved TOML file includes.
-Resolve Markdown links from their containing document, never from the target repo cwd.
-If the central pack root or contract is inaccessible, return blocked before acting;
-do not substitute a same-named file in the target repository.
-Read the target repository's applicable AGENTS.md and honor the task contract,
-scope, existing changes, and validation constraints. The adapter configures Codex
-model settings and instructions only; permissions come from the parent session.
-The central Markdown defines role semantics. Do not delegate further or dispatch nested workers. Return results to the parent orchestrator.
+These are loader instructions, not automatically resolved file includes.
+Resolve Markdown links relative to their document, not the target working directory.
+If the supplied pack root or contract is inaccessible, return the exact blocker;
+do not substitute a same-named file from another checkout.
+Honor target AGENTS.md, assigned criteria, ownership, existing edits and check limits.
+Inherit runtime settings and permissions; this loader does not enforce a sandbox.
+Do not delegate further. Return actual results and limits to the main agent.
 """
