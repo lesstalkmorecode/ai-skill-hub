@@ -108,8 +108,38 @@ class PackageValidationTests(unittest.TestCase):
             except OSError:
                 self.skipTest("Creating symlinks is unavailable on this host")
             errors = validate(root)
-            self.assertTrue(any("broken or escaping symlink" in error for error in errors), errors)
-            self.assertTrue(any("unreadable agent definition" in error for error in errors), errors)
+            # Path.resolve() can produce different results for dangling links on
+            # Windows and POSIX. An additional read error is incidental; both
+            # platforms must reject the broken link and the nonportable copy.
+            normalized = [error.replace("\\", "/") for error in errors]
+            self.assertIn(".codex/agents/reviewer.toml: broken or escaping symlink", normalized)
+            self.assertIn("reviewer.toml: local agent definition must be a portable regular-file copy", errors)
+
+    def test_resolvable_adapter_links_are_rejected(self):
+        for escaping in (False, True):
+            with self.subTest(escaping=escaping), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp) / "package"
+                for source in maintained_files(ROOT):
+                    target = root / source.relative_to(ROOT)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(source.read_bytes())
+                if escaping:
+                    destination = Path(temp) / "outside.toml"
+                    # A different external definition must be rejected before
+                    # comparison/parsing, not reported as ordinary adapter drift.
+                    destination.write_text("not valid TOML", encoding="utf-8")
+                else:
+                    destination = root / "adapters/codex/agents/reviewer.toml"
+                target = root / ".codex/agents/reviewer.toml"
+                target.unlink()
+                try:
+                    target.symlink_to(destination)
+                except OSError:
+                    self.skipTest("Creating symlinks is unavailable on this host")
+                expected = ["reviewer.toml: local agent definition must be a portable regular-file copy"]
+                if escaping:
+                    expected.append(".codex/agents/reviewer.toml: broken or escaping symlink")
+                self.assertCountEqual(expected, [error.replace("\\", "/") for error in validate(root)])
 
     def test_broken_links_cannot_hide_outside_maintained_files(self):
         with tempfile.TemporaryDirectory() as temp:
