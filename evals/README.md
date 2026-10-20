@@ -30,6 +30,10 @@ The tests exercise corrupted configurations, broken links, private distribution
 data, scope changes, invalid reports, and the grading rules. Synthetic reports
 prove checker behavior only. They do not establish agent compliance.
 
+For risk adaptation, selective loading and team decisions, use the
+[manual decision cases](decision-cases.md). These define behavioral expectations, not automated
+coverage; record an actual run before claiming a case passed.
+
 CI runs only these offline commands and `git diff --check` on Windows and Linux.
 No credentials, Docker build, or live model calls belong in that job.
 

@@ -13,9 +13,7 @@ These boundaries are instructions, not a sandbox. When enforced read-only access
 
 For Spring Boot targets, apply [Spring Boot](../spring-boot/SKILL.md) and only relevant references within these read-only boundaries.
 
-Review directly unless independent workers are requested, useful and permitted. A correctness reviewer covers behavior, criteria and maintainability. Add a risk reviewer only for a distinct relevant risk. Resolve actual worker settings through [model routing](../../agents/model-routing.md). Delegated reviewers apply their assignment and return findings; they never dispatch more agents. Disclose unavailable required independence.
-
-If the user requests the legacy menu, A means current diff plus one reviewer, B adds a risk reviewer, and C specifies a custom target. Do not show that menu for ordinary requests.
+Review directly by default. Use [risk and evidence](../task-orchestrator/references/risk.md) when consequences or uncertainty need deeper checks or a decision about permitted independent review. A correctness reviewer covers behavior, criteria and maintainability; add a risk reviewer only for a distinct question. Inherit runtime settings; read [worker settings](../../agents/model-routing.md) only for explicit overrides or compatibility problems. Delegated reviewers apply their assignment and return findings; they never dispatch more agents. Disclose unavailable required independence.
 
 Task reviewers receive complete assigned criteria, binding decisions, target/base and relevant evidence. Final integration review receives all criteria and relevant decisions across the task and participating repos. Partial reviews do not replace that whole-task check. If the target changes during review, identify the mismatch and inspect the affected new state before carrying findings forward.
 

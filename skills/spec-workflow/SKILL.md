@@ -50,4 +50,4 @@ Report the selected action, change name where applicable, behavior or artifacts 
 
 In Spec-driven mode, use the final response requirements in the linked reference. Delegated workers return evidence to the coordinator rather than issuing the overall final response.
 
-Normally the global entrypoint remains task-orchestrator, which loads this central skill by path. These actions do not require five separately installed skills.
+Use this skill directly when the spec action is sufficient, or let task-orchestrator load it for requested Spec-driven work. Ordinary coding does not require this workflow.

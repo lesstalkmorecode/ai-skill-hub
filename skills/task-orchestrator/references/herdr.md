@@ -1,6 +1,6 @@
 # Herdr visible-team
 
-Apply [Execution](execution.md) and [model routing](../../../agents/model-routing.md) to actual visible Herdr worker panes. Use independent visible reviewers and track pane identities and results. Do not substitute internal subagents or invent commands. Manual worker selection applies only when requested.
+Apply [Execution](execution.md) to actual visible Herdr worker panes; inherit runtime settings unless explicit overrides require [worker settings](../../../agents/model-routing.md). Use independent visible reviewers and track pane identities and results. Do not substitute internal subagents or invent commands. Manual worker selection applies only when requested.
 
 **Literal diagnostic commands:** A user message such as `herdr status` means run that exact read-only Herdr command and report its result. Do not reinterpret it as `git status`, repository discovery, or a workflow/menu request. Run explicit diagnostic commands without requiring workflow or worker-setting selections; they do not start workers.
 

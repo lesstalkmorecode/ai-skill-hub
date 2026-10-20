@@ -2,7 +2,7 @@
 
 ## Select an approach
 
-Start with one agent and add structure for a concrete uncertainty or risk. Use [investigation](investigation.md) for bugs, unfamiliar behavior or uncertain impact; understood paths need no separate investigation. A small diff can affect a critical boundary; a broad mechanical change can remain straightforward.
+Start with one agent. Use [Risk and evidence](risk.md) to choose verification and decide whether a bounded delegation would help; it owns the shared decision criteria. Add structure for a concrete uncertainty or risk. Use [investigation](investigation.md) for bugs, unfamiliar behavior or uncertain impact; understood paths need no separate investigation. A small diff can affect a critical boundary; a broad mechanical change can remain straightforward.
 
 | Task | Useful approach and evidence |
 | --- | --- |
@@ -14,7 +14,7 @@ Start with one agent and add structure for a concrete uncertainty or risk. Use [
 
 Combine approaches when needed. A complex-task plan identifies unresolved questions, implementation slices, dependency order and checks. Plan in the main session unless a focused assignment adds value; revisit affected decisions as evidence changes.
 
-Independent review is most useful for consequential security boundaries, data loss, concurrency, shared contracts, difficult migrations or weak verification. Select a reviewer for the actual risk; add another only for a distinct question. Routine well-understood changes normally need self-review and focused checks. Honor required review; disclose unavailable independence and its effect on completion rather than relabeling self-review.
+Use the risk reference for review depth. Honor required review; disclose unavailable independence and its effect on completion rather than relabeling self-review. Risk-sensitive work can remain single-agent when delegation is not permitted or would not resolve a specific uncertainty.
 
 ## Implement and verify
 
@@ -24,6 +24,6 @@ Make the smallest coherent diff that satisfies the behavior. Preserve public con
 
 Implement incrementally and run focused checks early. Establish a relevant pre-change baseline when practical; distinguish existing failures from regressions. Use project migration conventions for changed contracts or data.
 
-Choose verification by what could fail: a local logic change may need a focused unit check; changed interfaces need consumer checks; persistence, authentication, concurrency or user-interface behavior may need integration or manual evidence. Tests should assert observable behavior, not mirror implementation. Use the project's existing tools and broaden checks when impact or failures justify it. Respect offline, cost and execution limits; report unavailable checks instead of silently weakening coverage.
+Apply the [verification matrix](risk.md#choose-verification) to the actual failure modes using the project's existing tools. Respect offline, cost and execution limits; report unavailable checks instead of silently weakening coverage.
 
 For the [final verification gate](../SKILL.md#final-verification-gate), inspect the final diff and relevant untracked files. Match each criterion to final-state evidence or mark it unfinished/unverified; name untested behavior and recheck affected results after later edits. Explain consequential tradeoffs. Required independent review and [combined multi-repo checks](multi-repo.md#verify-together) remain required. Commit, push and publication require task authorization.

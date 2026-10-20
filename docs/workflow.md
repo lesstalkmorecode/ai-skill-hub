@@ -16,18 +16,22 @@ the conversation. Small tasks can proceed directly.
 | Review | Return prioritized findings with file references and consequences, without applying fixes. |
 | Fix or implement | Change the requested behavior within scope and run relevant, permitted checks. |
 | Spec-driven implementation | Present a draft and wait for approval before implementation. |
-| Handover | Summarize decisions, progress, checks, blockers, and next steps; save a file only when requested. |
 
 The final response describes the result, actual verification, and remaining gaps. Passing checks
 are evidence for the checked behavior; they do not establish user acceptance of the result.
 
 ## Choose the development approach
 
+Use a skill directly when it is sufficient; ordinary Codex tasks need no hub entrypoint.
 The [orchestrator](../skills/task-orchestrator/SKILL.md) routes understood local changes directly
 and loads [Investigation](../skills/task-orchestrator/references/investigation.md) for bugs or
 uncertainty. [Delivery](../skills/task-orchestrator/references/delivery.md) owns detailed approach
-selection and verification for substantial work, refactoring, architecture and security-sensitive
-changes. Planning and delegation remain optional and depend on the actual value and risk.
+selection for substantial work, refactoring, architecture and security-sensitive changes.
+[Risk and evidence](../skills/task-orchestrator/references/risk.md) owns verification depth and
+delegation decisions: local reversible changes get focused checks; changed shared boundaries
+need consumer/contract evidence; sensitive or irreversible effects need checks for their concrete
+failure modes. Uncertainty increases investigation and verification before it increases team size.
+Planning and delegation remain optional; model/effort settings inherit runtime defaults.
 
 These portable instructions use Codex as the current execution target; tool behavior stays in the
 [Codex execution reference](../adapters/codex/execution.md). No additional runtime is required.
@@ -38,6 +42,7 @@ and [red/green checks](https://simonwillison.net/guides/agentic-engineering-patt
 and Anthropic's [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
 and [context engineering guidance](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents).
 These inform the design; they do not establish measured improvements for this package.
+
 
 ## Spec-driven approval
 
@@ -57,9 +62,11 @@ project workflow and task authorization. See the [full Spec-driven rules](../ski
 
 ## Delegation
 
-You can request `Keep this in the main session` or `Use sub-agents`. Your instructions and runtime
-permissions govern delegation. Otherwise, the main agent may assign separable work when useful;
-roles are selected for the assignment rather than run as a fixed sequence.
+You can request `Keep this in the main session` or `Use sub-agents`. User/project authorization
+and runtime permissions govern delegation. When permitted, delegate only a bounded outcome with
+available inputs, clear ownership and a benefit exceeding integration cost. A tenant-isolation
+review or an independent consumer investigation can qualify; a small local fix or tightly coupled
+refactor normally stays local. High risk alone never authorizes dispatch or requires a team.
 
 Each worker receives the absolute hub pack root, target repository or worktree, role contract,
 expected outcome, assigned criteria, ownership, relevant decisions, and allowed checks. Workers
@@ -70,13 +77,14 @@ Only implementation workers are instructed to edit their assigned files. Paralle
 separate workspaces and independent shared resources. The main agent integrates changes and
 checks the final state; self-review is not independent review.
 
-See [worker contracts](../agents/README.md), [model settings](../agents/model-routing.md), and
+See [worker contracts](../agents/README.md), [optional model overrides](../agents/model-routing.md), and
 [optional Codex registration](../adapters/codex/README.md#register-named-agents). Role instructions are
 behavioral rules; enforced access restrictions depend on [session permissions](controls.md#permission-limits).
 
 ## Learning
 
-Learning stores approved guidance for future tasks. It starts after you explicitly accept the
+Learning stores approved guidance for future tasks. It adds no mandatory acceptance ceremony.
+When useful, it starts after you explicitly accept the
 final result: Codex may then propose a short lesson with its rule, evidence, scope, and destination.
 Saving needs a separate approval; silence authorizes no write.
 
@@ -93,11 +101,18 @@ and remains outside Git and plugin packages. An installed or cached plugin direc
 lesson destination. Without the source path, Codex continues without saved lessons and resolves
 it before proposing a save.
 
-Future relevant work reads existing general guidance and the matching application's lessons.
+Future relevant work reads supplied applicable general guidance and the matching application's lessons.
 Project IDs distinguish separate repositories while allowing worktrees to share lessons. Moving
 lessons or saving them in the target application requires explicit authorization. See the
-[learning reference](../skills/task-orchestrator/references/learning.md) for identification,
-retrieval, and migration rules.
+[retrieval reference](../skills/task-orchestrator/references/learning.md) for source resolution and
+identification. Retrieval guidance loads only for supplied applicable lessons; after explicit final
+acceptance, Codex may load [proposal and storage rules](../skills/task-orchestrator/references/learning.md#capture-only-evidence-backed-candidates).
+
+## Native context and session transfer
+
+Codex manages context and compaction. When a session transfer is actually needed, use only the
+minimal [session transfer note](../skills/task-orchestrator/references/context.md#session-transfer)
+in the existing context reference. No separate skill, workflow or persistent state is required.
 
 ## Loading guidance
 

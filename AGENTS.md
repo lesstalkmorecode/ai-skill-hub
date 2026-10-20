@@ -6,7 +6,8 @@ tools for development and verification.
 
 - The root `plugin.json` is the portable plugin manifest. Distribution uses the client's marketplace configuration.
 - Skills live in `skills/`; reusable worker contracts live in `agents/`.
-- `skills/task-orchestrator/SKILL.md` is the normal entrypoint. It loads domain skills only when a task needs them.
+- `skills/task-orchestrator/SKILL.md` is an optional coordination entrypoint. Skills can be used directly; domain guidance loads only when needed. Use Codex's native lifecycle rather than recreating it.
+- `skills/task-orchestrator/references/risk.md` owns risk/evidence and delegation decision criteria. Keep other workflows linked to it rather than duplicating matrices. Workers inherit runtime model/effort defaults unless explicitly overridden.
 - `skills/spring-boot/SKILL.md` is domain guidance, not the task lifecycle owner.
 - Lessons default to the local `learning/` directory in the AI Skill Hub source checkout, with separate general and project scopes. Keep lessons out of Git and plugin packages; an installed plugin must resolve the source checkout separately from its cache. Write lessons into a target application repository only when explicitly requested. Propose them only after explicit final review acceptance and save them only after separate user approval.
 - Keep all project content in English, including prompts, comments and examples.

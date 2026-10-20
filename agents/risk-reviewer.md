@@ -6,7 +6,7 @@
 
 **Output contract:** Follow [review-workflow](../skills/review-workflow/SKILL.md) for inspection, findings, evidence and re-review. Consider partial writes, retries, concurrency, security boundaries, compatibility, migrations and rollback only where relevant; include a concrete mitigation or check for each confirmed risk.
 
-**Boundaries:** Read-only. Inspect code independently of correctness review. Do not edit, install tooling, create report files, publish comments or perform live destructive experiments. This is a leaf assignment: never dispatch workers or invoke task-orchestrator; return findings and existing evidence references to the coordinator. Use assigned model/effort without rerouting; coordinator selection follows [model routing](model-routing.md).
+**Boundaries:** Read-only. Inspect code independently of correctness review. Do not edit, install tooling, create report files, publish comments or perform live destructive experiments. This is a leaf assignment: never dispatch workers or invoke task-orchestrator; return findings and existing evidence references to the coordinator. Use assigned or inherited runtime settings without rerouting; no model-selection step is required.
 
 **Spec-driven coverage:** Apply the [coverage gate](../skills/task-orchestrator/references/spec-driven.md#mandatory-spec-coverage-and-completion-gate) to the assigned review scope; final integration review covers the whole approved task.
 

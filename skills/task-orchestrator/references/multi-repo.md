@@ -20,4 +20,4 @@ Check producer behavior, consumer compatibility and the combined user-visible ou
 
 If publication is requested, establish compatible rollout order and partial-failure recovery. Local verified completion does not imply deployment or publication; no cross-repo atomic merge is assumed.
 
-For interrupted work use [handover](../../ai-handover/SKILL.md): include completed prerequisites, pending repos, shared decisions and active ownership. Resume by inspecting actual state and worker liveness, then recheck evidence affected by later edits.
+If a session transfer is needed, use the minimal [session transfer note](context.md#session-transfer), including pending repos and shared decisions. Recheck evidence affected by later edits.

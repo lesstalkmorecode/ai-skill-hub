@@ -1,9 +1,17 @@
-# Worker settings
+# Optional worker settings
 
-Keep the main chat's settings. Explicit task choices win, then user-selected preferences; otherwise the coordinator chooses supported runtime options. Load [preferences](../skills/task-orchestrator/references/preferences.md) only for manual or saved choices. Workers never reroute themselves.
+Inherit runtime model and effort defaults. Role names, risk levels and file counts do not select
+models; no routing stage or model menu is required. Keep the main chat's settings.
 
-Choose capacity and reasoning separately by uncertainty and consequence, not fixed role or file count. Mechanical work may use lighter settings; ambiguous debugging, security or cross-repo behavior may need more. Do not invent model IDs, prices or applied overrides. If reliable selection information is absent, disclose runtime defaults.
+Read this only for an explicit model/effort choice, an existing user-selected constraint or an
+unsupported dispatch setting. Current user choices take precedence over saved preferences.
+Load [preferences](../skills/task-orchestrator/references/preferences.md) only when those exist.
 
-State requested settings, observable effective settings and a short reason. Apply only compatible dispatch arguments; unknown effective settings remain unknown. Automatic fallback must respect explicit constraints; resolve an unsupported explicit choice before dispatch. No global config edits.
+Apply overrides only through supported runtime arguments; never invent IDs, prices or effective
+settings. If a requested setting cannot be honored, report that before dispatch and resolve the
+conflict with the user. Missing optional overrides otherwise use runtime defaults. Unknown
+effective settings stay unknown; no global configuration edits are implied.
 
-Before upgrading, distinguish missing context, scope, tooling and incorrect assumptions from reasoning difficulty through [recovery](../skills/task-orchestrator/references/recovery.md). Budgets require observable runtime enforcement. Model changes grant no permissions, spec approval or review independence.
+Do not respond to a failed check by automatically upgrading a model. Use [recovery](../skills/task-orchestrator/references/recovery.md)
+to inspect missing context, assumptions, scope and tooling first. Respect explicit attempt and
+budget limits; claim enforcement only when observable. Workers do not reroute themselves.

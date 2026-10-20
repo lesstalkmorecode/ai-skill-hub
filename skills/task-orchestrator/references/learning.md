@@ -1,14 +1,13 @@
 # Learning from approved work
 
-Use this reference to retrieve saved guidance at task start and, after final acceptance, consider
-reusable corrections, preferences or project decisions. Learning is optional; do not preload domain
+Load only when user/project guidance supplies applicable saved lessons, or after explicit final
+acceptance when a useful lesson is being considered. Learning is optional; do not preload domain
 documentation to look for lessons.
 
 ## Capture only evidence-backed candidates
 
-Present the completed result and explicitly ask for review before proposing lessons. Complete
-requested revisions, rerun relevant checks and ask for review again. Only explicit final acceptance
-permits a proposal; silence, passing checks and earlier code approval do not establish acceptance.
+Do not require a final user-acceptance ceremony for ordinary work. Only explicit final acceptance
+permits a lesson proposal; silence, passing checks and earlier code approval do not establish acceptance.
 
 After acceptance, inspect the final diff and the user's words. Propose only a clear, reusable rule
 supported by a test, check or concrete review evidence. Include the rule, evidence, general or

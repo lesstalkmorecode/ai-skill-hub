@@ -9,7 +9,8 @@ When editing this package, validate `plugin.json`, skill frontmatter, and relati
 Keep canonical agent definitions in `adapters/codex/agents/` identical to the matching `.codex/agents/`
 copies. Review changes against the affected role contracts and approval boundaries.
 
-Use the target application's own tests to verify application changes. Report checks actually
+Choose verification using [Risk and evidence](../skills/task-orchestrator/references/risk.md),
+which owns the shared matrix and completion limits. Use the target application's own tests to verify application changes. Report checks actually
 performed and meaningful limits. Evaluate workflow changes through real tasks and observed results.
 
 ## Permission limits

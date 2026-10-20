@@ -80,4 +80,4 @@ in this checkout. Update both sets together and keep their contents identical. C
 another project or your personal configuration require separate maintenance. Changes to central
 Markdown contracts affect future reads from the supplied pack root.
 
-For model and effort selection, see [model routing](../../agents/model-routing.md).
+Models and effort inherit runtime defaults; see [worker settings](../../agents/model-routing.md) only for explicit overrides or compatibility problems.

@@ -1,8 +1,9 @@
 # AI Skill Hub
 
-AI Skill Hub packages portable Agentic Coding guidance with Codex as its current execution target.
+AI Skill Hub packages single-agent-first, evidence-driven, risk-adaptive Agentic Coding guidance
+with Codex as its current execution target. Multi-agent work is selective and permission-dependent.
 It helps agents understand repository behavior, choose a development approach, implement focused
-changes, review code, work from approved specifications, and hand over unfinished tasks. It also
+changes, review code, and work from approved specifications. It also
 includes technical guidance for Spring Boot applications.
 
 This personal project supports daily development and practice in designing agent workflows.
@@ -11,24 +12,30 @@ optional worker definitions, and a portable plugin manifest.
 
 ## How it works
 
-Start with `task-orchestrator` or invoke a skill directly. Codex reads the relevant project rules
+Use `task-orchestrator` when evidence and risk decisions need explicit guidance, or invoke a
+domain, review or spec skill directly. Routine tasks can use Codex without this pack.
+Codex reads the relevant project rules
 and skill instructions, then uses the application's tools and tests. Each skill can load detailed
 `references/` guidance for the topic at hand, such as transactions or authentication.
 
 Small tasks normally stay with one agent. Complexity, uncertainty, risk and affected contracts guide
 planning, selective delegation and verification; there is no required agent chain. General guidance
 lives in skills and role contracts, with native execution details in the existing Codex adapter.
-See [development approach selection](docs/workflow.md#choose-the-development-approach).
+See [development approach selection](docs/workflow.md#choose-the-development-approach) and the
+[risk/evidence decision matrix](skills/task-orchestrator/references/risk.md).
+
+The pack does not replace Codex's native planning, context compaction, tool use or subagent
+lifecycle. It adds reusable domain knowledge, evidence criteria and optional workflow contracts.
+Models and effort inherit runtime defaults; there is no required model-routing stage.
 
 ### Skills
 
 | Skill | Purpose |
 | --- | --- |
-| [task-orchestrator](skills/task-orchestrator/SKILL.md) | Coordinate task scope, relevant guidance, permitted delegation, and final verification. |
-| [spring-boot](skills/spring-boot/SKILL.md) | Guide implementation, debugging, and review using the application's versions and conventions. |
+| [task-orchestrator](skills/task-orchestrator/SKILL.md) | Choose proportionate evidence and coordinate only the structure the task needs. |
+| [spring-boot](skills/spring-boot/SKILL.md) | Optional domain guidance using the application's versions and conventions; no lifecycle ownership. |
 | [review-workflow](skills/review-workflow/SKILL.md) | Produce prioritized code review findings without applying fixes. |
 | [spec-workflow](skills/spec-workflow/SKILL.md) | Explore, propose, implement, sync, or archive specifications under the project's conventions. |
-| [ai-handover](skills/ai-handover/SKILL.md) | Prepare a continuation note with decisions, current state, checks, and remaining work. |
 
 ### Worker roles
 
@@ -98,7 +105,8 @@ against every approved acceptance criterion. See the [workflow guide](docs/workf
 
 After you accept a completed result, Codex may propose saving a reusable lesson. Saving requires
 separate approval. Lessons stay in the hub checkout's gitignored `learning/` directory and must
-be excluded from distribution. Provide the source path when using this feature; see [learning](docs/workflow.md#learning).
+be excluded from distribution. Learning adds no mandatory final-review ceremony or startup scan.
+Provide applicable saved guidance and the source path when using this feature; see [learning](docs/workflow.md#learning).
 
 ## Development
 

@@ -19,5 +19,6 @@ Role loaders do not enforce tool or filesystem restrictions. Follow
 session when enforced read-only review is required. Context separation, independent review and
 OS-enforced isolation require separate evidence.
 
-The supplied adapters omit fixed model/effort settings. The coordinator follows
-[model routing](../../agents/model-routing.md) for selection and unsupported overrides.
+The supplied adapters inherit runtime model/effort defaults. Consult
+[worker settings](../../agents/model-routing.md) only for explicit overrides or compatibility problems;
+there is no mandatory model-routing stage.
