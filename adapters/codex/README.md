@@ -71,7 +71,7 @@ before claiming a named worker performed the task. See the [official custom agen
 
 For delegated work, load only [Codex execution](execution.md) for runtime capabilities, context
 inheritance and permission limits. Task assignments and integration are owned by the portable
-[Execution reference](../../skills/task-orchestrator/references/execution.md).
+[Execution reference](../../skills/task-execution/references/execution.md).
 
 ## Maintaining definitions
 
@@ -80,4 +80,4 @@ in this checkout. Update both sets together and keep their contents identical. C
 another project or your personal configuration require separate maintenance. Changes to central
 Markdown contracts affect future reads from the supplied pack root.
 
-The only supplied roles are `implementer` and `reviewer`. Models and effort inherit native runtime defaults; explicit supported user settings are handled in the [delegation guidance](../../skills/task-orchestrator/references/execution.md). No model-selection stage or global configuration changes are implied.
+The only supplied roles are `implementer` and `reviewer`. Models and effort inherit native runtime defaults; explicit supported user settings are handled in the [delegation guidance](../../skills/task-execution/references/execution.md). No model-selection stage or global configuration changes are implied.

@@ -10,7 +10,7 @@ evidence. For spec work apply [spec-workflow coverage](../skills/spec-workflow/S
 within the assignment; partial coverage does not establish whole-task completion.
 
 Do not edit, revert, install tools, create report files, publish comments, dispatch more workers,
-invoke task-orchestrator or change runtime settings. Report an inaccessible base/target or missing
+invoke task-execution or change runtime settings. Report an inaccessible base/target or missing
 essential context precisely. If the reviewed state changes, identify what is no longer covered.
 Return findings and existing evidence references to the main agent; review completion does not
 approve the overall task. Role instructions are not an enforced read-only sandbox.

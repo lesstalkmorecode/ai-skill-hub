@@ -16,9 +16,9 @@ No pipeline, task-state schema, plan file or team is required.
 | Failed check | Revise the diagnosis with new evidence before retrying. |
 | Unresolved product decision | Ask the user; continue independent authorized work. |
 
-[Risk and evidence](../skills/task-orchestrator/references/risk.md) owns the consequence, reach,
+[Risk and evidence](../skills/task-execution/references/risk.md) owns the consequence, reach,
 reversibility and uncertainty criteria, evidence model, recovery decisions and completion limits.
-[task-orchestrator](../skills/task-orchestrator/SKILL.md) remains only as an optional entrypoint for
+[task-execution](../skills/task-execution/SKILL.md) remains only as an optional entrypoint for
 these decisions; it does not route every task. Load domain references only for affected behavior.
 For example, Spring persistence guidance helps with database invariants but is irrelevant to a
 small Python fix. File counts are weak risk proxies. High risk increases verification depth,
@@ -37,12 +37,12 @@ verified-completion claim. Recheck results affected by subsequent edits.
 
 ## Optional delegation
 
-The [delegation criteria](../skills/task-orchestrator/references/risk.md#decide-whether-to-delegate)
+The [delegation criteria](../skills/task-execution/references/risk.md#decide-whether-to-delegate)
 require authorization and concrete value. A bounded independent implementation or focused review
 can qualify; a coupled refactor or tiny fix normally stays local. Use only
 [implementer or reviewer](../agents/README.md) and native runtime defaults, honoring explicit
 supported user settings. Planning, design, test selection and risk analysis remain normal main-agent
-capabilities. [Assignment and integration](../skills/task-orchestrator/references/execution.md)
+capabilities. [Assignment and integration](../skills/task-execution/references/execution.md)
 loads only for actual dispatch. Workers are leaf assignments, not a required chain.
 
 Independent review is distinct from self-review. If required independence is unavailable, say so.

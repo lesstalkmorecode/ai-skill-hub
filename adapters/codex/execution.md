@@ -8,7 +8,7 @@ project's build/test commands. No additional orchestration runtime, index or tas
 is required.
 
 Check the tools and named roles actually exposed before dispatch. Follow
-[Execution](../../skills/task-orchestrator/references/execution.md) for assignments, ownership,
+[Execution](../../skills/task-execution/references/execution.md) for assignments, ownership,
 liveness, recovery and integration. Check whether the dispatch API supports selective context or
 inherits history; disclose inherited history rather than claiming isolated context.
 Use supported status/wait and continuation controls. If optional delegation is unavailable,

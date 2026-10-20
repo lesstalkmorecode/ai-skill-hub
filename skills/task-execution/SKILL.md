@@ -1,9 +1,9 @@
 ---
-name: task-orchestrator
-description: Choose proportionate investigation, failure-mode evidence, and authorized delegation for uncertain or consequential coding changes. Ordinary fixes and direct skills need no orchestrator.
+name: task-execution
+description: Choose proportionate investigation, failure-mode evidence, and authorized delegation for uncertain or consequential coding changes. Ordinary fixes and direct skills need no task-execution guidance.
 ---
 
-# Adaptive coding decisions
+# Task execution
 
 This is optional decision guidance, not a replacement for Codex's native loop. Keep normal work
 in the main agent. Understand → explore → decide → act → verify → recover describes adaptive

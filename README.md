@@ -11,17 +11,17 @@ Normal work stays in the main agent. Understand → explore → decide → act �
 an adaptive behavioral model, not a required sequence of stages. A known local fix needs inspection,
 a change and focused verification; an unknown bug needs distinguishing evidence before a patch.
 Consequence, reach, reversibility and uncertainty determine evidence depth, never file count or
-team size. See [risk and evidence](skills/task-orchestrator/references/risk.md) and the
+team size. See [risk and evidence](skills/task-execution/references/risk.md) and the
 [workflow guide](docs/workflow.md).
 
 | Skill | Responsibility |
 | --- | --- |
-| [task-orchestrator](skills/task-orchestrator/SKILL.md) | Optional investigation, risk, verification and delegation decisions for uncertain or consequential changes. |
+| [task-execution](skills/task-execution/SKILL.md) | Optional investigation, risk, verification and delegation decisions for uncertain or consequential changes. |
 | [review-workflow](skills/review-workflow/SKILL.md) | Direct read-only review with actionable findings; no required worker. |
 | [spec-workflow](skills/spec-workflow/SKILL.md) | Sole spec lifecycle, approval, storage and criterion-coverage authority when requested or required. |
 | [spring-boot](skills/spring-boot/SKILL.md) | Optional framework guidance matched to actual project versions and affected topics. |
 
-Use a skill directly when sufficient. Ordinary Codex tasks do not need this package's orchestrator.
+Use a skill directly when sufficient. Ordinary Codex tasks do not need this package's task-execution guidance.
 Load only relevant guidance. Learning and session transfer are outside the coding loop.
 
 Only two optional [worker roles](agents/README.md) remain:
@@ -41,7 +41,7 @@ explicit supported user preferences are honored without a model-routing subsyste
 Keep a checkout of this repository and open your target application in Codex:
 
 ```text
-Use /absolute/path/to/ai-skill-hub/skills/task-orchestrator/SKILL.md.
+Use /absolute/path/to/ai-skill-hub/skills/task-execution/SKILL.md.
 Pack root: /absolute/path/to/ai-skill-hub.
 Target project: the current workspace.
 Fix duplicate orders when a request is retried and verify overlapping requests.

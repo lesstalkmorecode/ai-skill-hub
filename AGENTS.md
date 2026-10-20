@@ -5,8 +5,8 @@ Use native planning, tools, context management and compaction. Preserve user int
 edits, authorization and honest evidence; do not add mandatory stages to ordinary coding.
 
 - `plugin.json` describes the portable package; skills under `skills/` can be invoked directly.
-- Optional `task-orchestrator` adds risk/evidence decisions, not a replacement development loop.
-  Its [risk reference](skills/task-orchestrator/references/risk.md) owns shared engineering criteria.
+- Optional `task-execution` adds risk/evidence decisions, not a replacement development loop.
+  Its [risk reference](skills/task-execution/references/risk.md) owns shared engineering criteria.
 - `spec-workflow` alone owns spec lifecycle, storage, approval and coverage. Ordinary work needs no spec.
 - `review-workflow` is directly invocable and read-only. `spring-boot` is optional domain guidance.
 - Only `implementer` and `reviewer` worker contracts exist. Delegation requires authorization and

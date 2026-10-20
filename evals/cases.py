@@ -64,7 +64,7 @@ def prompt(scenario, pack):
     )
     tasks = {
         "bug-fix": (
-            "Use skills/task-orchestrator/SKILL.md. Fix total(items) to satisfy README.md. "
+            "Use skills/task-execution/SKILL.md. Fix total(items) to satisfy README.md. "
             "Only calc.py may change. Verify representative cases and report actual results."
         ),
         "read-only-review": (

@@ -6,7 +6,7 @@ description: Explore, propose, apply, sync, or archive specifications, including
 # Spec workflow
 
 This skill alone owns specification lifecycle, draft storage, approval and coverage in this pack.
-Use it directly or from task-orchestrator. Ordinary coding does not require a spec. Follow the
+Use it directly or from task-execution. Ordinary coding does not require a spec. Follow the
 requested action; explore, propose, apply, sync and archive are distinct and do not authorize one
 another. Spec-driven implementation includes drafting and approval before applying.
 

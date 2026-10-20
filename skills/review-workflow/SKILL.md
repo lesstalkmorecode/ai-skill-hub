@@ -13,7 +13,7 @@ review target is available, say so rather than inventing findings.
 Read applicable repo guidance, the complete assigned target and necessary nearby code. Inspect
 actual code independently of implementation summaries. Assess correctness, architecture, security,
 concurrency, data integrity, performance or test coverage as relevant to the assignment. Use
-[risk and evidence](../task-orchestrator/references/risk.md) for consequential failure modes;
+[risk and evidence](../task-execution/references/risk.md) for consequential failure modes;
 load [Spring Boot](../spring-boot/SKILL.md) topics only for that stack. Do not turn every concern
 into a separate worker. Independent review requires both authority and concrete benefit under
 the linked delegation criteria; disclose unavailable required independence.

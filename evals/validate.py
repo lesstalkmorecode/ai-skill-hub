@@ -10,7 +10,7 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_ROLES = {"implementer", "reviewer"}
-EXPECTED_SKILLS = {"task-orchestrator", "spec-workflow", "review-workflow", "spring-boot"}
+EXPECTED_SKILLS = {"task-execution", "spec-workflow", "review-workflow", "spring-boot"}
 CONTENT_DIRS = ("skills", "agents", "adapters", "docs", "evals", ".github")
 PRIVATE_PARTS = {
     "learning", ".git", ".idea", ".aws", ".ai-skill-hub", "__pycache__",

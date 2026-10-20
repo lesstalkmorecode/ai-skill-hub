@@ -1,6 +1,6 @@
 # Risk and loading decision cases
 
-These are manual behavioral evaluation cases for the [risk reference](../skills/task-orchestrator/references/risk.md),
+These are manual behavioral evaluation cases for the [risk reference](../skills/task-execution/references/risk.md),
 not additional workflow steps or automated pass claims. Run in disposable fixtures if live
 evaluation is authorized. Record the pack revision/diff, runtime, prompt, actions, actual checks
 and remaining gaps. Judge observable decisions and evidence, not exact response wording.
