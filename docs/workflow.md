@@ -31,6 +31,13 @@ changes. Planning and delegation remain optional and depend on the actual value 
 
 These portable instructions use Codex as the current execution target; tool behavior stays in the
 [Codex execution reference](../adapters/codex/execution.md). No additional runtime is required.
+The approach draws on Simon Willison's
+[Agentic Engineering Patterns](https://simonwillison.net/guides/agentic-engineering-patterns/),
+including [baseline testing](https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/)
+and [red/green checks](https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/),
+and Anthropic's [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+and [context engineering guidance](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents).
+These inform the design; they do not establish measured improvements for this package.
 
 ## Spec-driven approval
 
@@ -89,9 +96,8 @@ it before proposing a save.
 Future relevant work reads existing general guidance and the matching application's lessons.
 Project IDs distinguish separate repositories while allowing worktrees to share lessons. Moving
 lessons or saving them in the target application requires explicit authorization. See the
-[retrieval reference](../skills/task-orchestrator/references/learning.md) for source resolution and
-identification. Task start loads only retrieval guidance; after explicit final acceptance, Codex
-loads [proposal and storage rules](../skills/task-orchestrator/references/learning-capture.md).
+[learning reference](../skills/task-orchestrator/references/learning.md) for identification,
+retrieval, and migration rules.
 
 ## Loading guidance
 
