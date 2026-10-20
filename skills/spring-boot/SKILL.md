@@ -29,10 +29,12 @@ References contain decision checks, not mandatory features. Their official links
 
 ## Learn from the project
 
-Read the project's existing decisions and applicable saved lessons through
-[approved-work learning](../task-orchestrator/references/learning.md), which owns retrieval,
-candidate selection, acceptance and save approval. Do not impose a fixed convention set or
-silently edit this shared skill.
+Use the project's existing decisions and applicable saved lessons. Reuse already loaded guidance
+that remains valid; use [saved-guidance retrieval](../task-orchestrator/references/learning.md)
+only when relevant lessons are missing from context. That reference covers retrieval only;
+[lesson proposal and storage](../task-orchestrator/references/learning-capture.md) governs
+proposals and separate save approval and is loaded only after explicit final acceptance.
+Do not impose a fixed convention set or silently edit this shared skill.
 
 ## Verify the changed behavior
 

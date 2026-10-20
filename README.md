@@ -1,8 +1,9 @@
 # AI Skill Hub
 
-AI Skill Hub packages reusable coding instructions as a local Codex plugin. It helps Codex
-investigate problems, implement changes, review code, work from approved specifications, and
-hand over unfinished tasks. It also includes technical guidance for Spring Boot applications.
+AI Skill Hub packages portable Agentic Coding guidance with Codex as its current execution target.
+It helps agents understand repository behavior, choose a development approach, implement focused
+changes, review code, work from approved specifications, and hand over unfinished tasks. It also
+includes technical guidance for Spring Boot applications.
 
 This personal project supports daily development and practice in designing agent workflows.
 Codex performs the work using its available tools; the repository supplies Markdown skills,
@@ -13,6 +14,11 @@ optional worker definitions, and a portable plugin manifest.
 Start with `task-orchestrator` or invoke a skill directly. Codex reads the relevant project rules
 and skill instructions, then uses the application's tools and tests. Each skill can load detailed
 `references/` guidance for the topic at hand, such as transactions or authentication.
+
+Small tasks normally stay with one agent. Complexity, uncertainty, risk and affected contracts guide
+planning, selective delegation and verification; there is no required agent chain. General guidance
+lives in skills and role contracts, with native execution details in the existing Codex adapter.
+See [development approach selection](docs/workflow.md#choose-the-development-approach).
 
 ### Skills
 

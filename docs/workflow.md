@@ -21,6 +21,17 @@ the conversation. Small tasks can proceed directly.
 The final response describes the result, actual verification, and remaining gaps. Passing checks
 are evidence for the checked behavior; they do not establish user acceptance of the result.
 
+## Choose the development approach
+
+The [orchestrator](../skills/task-orchestrator/SKILL.md) routes understood local changes directly
+and loads [Investigation](../skills/task-orchestrator/references/investigation.md) for bugs or
+uncertainty. [Delivery](../skills/task-orchestrator/references/delivery.md) owns detailed approach
+selection and verification for substantial work, refactoring, architecture and security-sensitive
+changes. Planning and delegation remain optional and depend on the actual value and risk.
+
+These portable instructions use Codex as the current execution target; tool behavior stays in the
+[Codex execution reference](../adapters/codex/execution.md). No additional runtime is required.
+
 ## Spec-driven approval
 
 Spec-driven mode applies when you request it or the target project's instructions require it.
@@ -78,8 +89,9 @@ it before proposing a save.
 Future relevant work reads existing general guidance and the matching application's lessons.
 Project IDs distinguish separate repositories while allowing worktrees to share lessons. Moving
 lessons or saving them in the target application requires explicit authorization. See the
-[learning reference](../skills/task-orchestrator/references/learning.md) for identification,
-retrieval, and migration rules.
+[retrieval reference](../skills/task-orchestrator/references/learning.md) for source resolution and
+identification. Task start loads only retrieval guidance; after explicit final acceptance, Codex
+loads [proposal and storage rules](../skills/task-orchestrator/references/learning-capture.md).
 
 ## Loading guidance
 

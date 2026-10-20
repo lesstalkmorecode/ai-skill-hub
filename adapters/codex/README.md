@@ -67,6 +67,12 @@ The reviewer reads `agents/reviewer.md` from that root. Keep the checkout access
 contains loader instructions, not an embedded copy of the role contract. Check agent availability
 before claiming a named worker performed the task. See the [official custom agent documentation](https://learn.chatgpt.com/docs/agent-configuration/subagents).
 
+## Native execution
+
+For delegated work, load only [Codex execution](execution.md) for runtime capabilities, context
+inheritance and permission limits. Task assignments and integration are owned by the portable
+[Execution reference](../../skills/task-orchestrator/references/execution.md).
+
 ## Maintaining definitions
 
 Canonical adapters in `adapters/codex/agents/` have matching copies under `.codex/agents/` for work
@@ -74,10 +80,4 @@ in this checkout. Update both sets together and keep their contents identical. C
 another project or your personal configuration require separate maintenance. Changes to central
 Markdown contracts affect future reads from the supplied pack root.
 
-The supplied adapters omit fixed model and effort settings. The coordinator resolves supported
-settings from explicit user choices, selected saved preferences, or task-based routing; see
-[model routing](../../agents/model-routing.md). Disclose unavailable automatic overrides; an
-explicit user constraint requires a compatible alternative before dispatch.
-
-Agents inherit parent-session permissions. Role instructions do not enforce a separate sandbox;
-see [permission limits](../../docs/controls.md#permission-limits).
+For model and effort selection, see [model routing](../../agents/model-routing.md).
